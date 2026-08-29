@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Brand logo reloads the current page instead of navigating
+  // Brand logo navigates back to the home page
   const homeLogo = document.getElementById('home-logo');
   if (homeLogo) {
     homeLogo.addEventListener('click', () => {
-      window.location.reload();
+      window.location.href = import.meta.env.BASE_URL || '/';
     });
   }
 
