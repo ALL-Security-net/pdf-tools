@@ -1,0 +1,17 @@
+<svg width="166" height="166" viewBox="0 0 166 166" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="pt-accent" x1="0" y1="0" x2="166" y2="166" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#2dd4bf"/>
+    </linearGradient>
+  </defs>
+  <!-- Document sheet -->
+  <path d="M45 22 h50 l28 28 v94 a8 8 0 0 1 -8 8 H45 a8 8 0 0 1 -8 -8 V30 a8 8 0 0 1 8 -8 Z"
+        fill="none" stroke="url(#pt-accent)" stroke-width="9" stroke-linejoin="round"/>
+  <!-- Folded corner -->
+  <path d="M95 22 v28 h28" fill="none" stroke="url(#pt-accent)" stroke-width="9" stroke-linejoin="round"/>
+  <!-- Text lines -->
+  <line x1="56" y1="82" x2="110" y2="82" stroke="url(#pt-accent)" stroke-width="9" stroke-linecap="round"/>
+  <line x1="56" y1="103" x2="110" y2="103" stroke="url(#pt-accent)" stroke-width="9" stroke-linecap="round"/>
+  <line x1="56" y1="124" x2="90" y2="124" stroke="url(#pt-accent)" stroke-width="9" stroke-linecap="round"/>
+</svg>

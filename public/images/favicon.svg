@@ -1,0 +1,20 @@
+<svg width="166" height="166" viewBox="0 0 166 166" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="pt-accent" x1="0" y1="0" x2="166" y2="166" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#2dd4bf"/>
+    </linearGradient>
+  </defs>
+  <!-- Circular background -->
+  <circle cx="83" cy="83" r="83" fill="#0b1220"/>
+  <circle cx="83" cy="83" r="80" fill="none" stroke="#1a2440" stroke-width="2"/>
+  <!-- Document sheet -->
+  <path d="M52 34 h38 l24 24 v72 a7 7 0 0 1 -7 7 H52 a7 7 0 0 1 -7 -7 V41 a7 7 0 0 1 7 -7 Z"
+        fill="none" stroke="url(#pt-accent)" stroke-width="8" stroke-linejoin="round"/>
+  <!-- Folded corner -->
+  <path d="M90 34 v24 h24" fill="none" stroke="url(#pt-accent)" stroke-width="8" stroke-linejoin="round"/>
+  <!-- Text lines -->
+  <line x1="61" y1="84" x2="105" y2="84" stroke="url(#pt-accent)" stroke-width="8" stroke-linecap="round"/>
+  <line x1="61" y1="102" x2="105" y2="102" stroke="url(#pt-accent)" stroke-width="8" stroke-linecap="round"/>
+  <line x1="61" y1="120" x2="88" y2="120" stroke="url(#pt-accent)" stroke-width="8" stroke-linecap="round"/>
+</svg>
