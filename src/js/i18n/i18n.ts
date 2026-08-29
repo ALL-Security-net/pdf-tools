@@ -174,12 +174,9 @@ export const changeLanguage = (lang: SupportedLanguage): void => {
     pagePathWithoutLang = '/' + pagePathWithoutLang;
   }
 
-  let newRelativePath: string;
-  if (lang === 'en') {
-    newRelativePath = pagePathWithoutLang;
-  } else {
-    newRelativePath = `/${lang}${pagePathWithoutLang}`;
-  }
+  // O idioma é persistido em localStorage e aplicado em runtime — não há
+  // páginas estáticas por idioma, então a URL nunca recebe prefixo /{lang}.
+  const newRelativePath = pagePathWithoutLang;
 
   let newPath: string;
   if (basePath && basePath !== '/') {
@@ -191,7 +188,11 @@ export const changeLanguage = (lang: SupportedLanguage): void => {
   newPath = newPath.replace(/\/+/g, '/');
 
   const newUrl = newPath + window.location.search + window.location.hash;
-  window.location.href = newUrl;
+  if (newPath === window.location.pathname) {
+    window.location.reload();
+  } else {
+    window.location.href = newUrl;
+  }
 };
 
 // Apply translations to all elements with data-i18n attribute
@@ -231,64 +232,8 @@ export const applyTranslations = (): void => {
 };
 
 export const rewriteLinks = (): void => {
-  const currentLang = getLanguageFromUrl();
-  if (currentLang === 'en') return;
-
-  const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
-  const links = document.querySelectorAll('a[href]');
-
-  links.forEach((link) => {
-    const href = link.getAttribute('href');
-    if (!href) return;
-
-    if (
-      href.startsWith('http') ||
-      href.startsWith('//') ||
-      href.startsWith('mailto:') ||
-      href.startsWith('tel:') ||
-      href.startsWith('#') ||
-      href.startsWith('javascript:') ||
-      href.startsWith('data:') ||
-      href.startsWith('vbscript:')
-    ) {
-      return;
-    }
-
-    if (href.includes('/assets/')) {
-      return;
-    }
-
-    const langPrefixRegex = new RegExp(
-      `^(${basePath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})?/?(en|ar|fr|es|de|zh|zh-TW|vi|tr|id|it|pt|nl|be|da|ko|sv|ru|ja|uk|sk)(/|$)`
-    );
-    if (langPrefixRegex.test(href)) {
-      return;
-    }
-
-    let newHref: string;
-    if (basePath && basePath !== '/' && href.startsWith(basePath)) {
-      const pathAfterBase = href.slice(basePath.length);
-      newHref = `${basePath}/${currentLang}${pathAfterBase}`;
-    } else if (href.startsWith('/')) {
-      if (basePath && basePath !== '/') {
-        newHref = `${basePath}/${currentLang}${href}`;
-      } else {
-        newHref = `/${currentLang}${href}`;
-      }
-    } else if (href === '' || href === 'index.html') {
-      if (basePath && basePath !== '/') {
-        newHref = `${basePath}/${currentLang}/`;
-      } else {
-        newHref = `/${currentLang}/`;
-      }
-    } else {
-      newHref = `/${currentLang}/${href}`;
-    }
-
-    newHref = newHref.replace(/([^:])\/+/g, '$1/');
-
-    link.setAttribute('href', newHref);
-  });
+  // Sem páginas estáticas por idioma: os links internos nunca recebem
+  // prefixo /{lang} — a tradução acontece em runtime na mesma URL.
 };
 
 export default i18next;

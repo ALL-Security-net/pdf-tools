@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Brand logo reloads the current page instead of navigating
+  const homeLogo = document.getElementById('home-logo');
+  if (homeLogo) {
+    homeLogo.addEventListener('click', () => {
+      window.location.reload();
+    });
+  }
+
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
   const menuIcon = document.getElementById('menu-icon');

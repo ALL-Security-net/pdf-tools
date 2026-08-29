@@ -10,9 +10,20 @@ const R2_PATHS = new Set([
   '/libreoffice-wasm/soffice.data.gz',
 ]);
 
+// Não há páginas estáticas por idioma: URLs legadas /{lang}/... são
+// redirecionadas para o caminho sem prefixo (o idioma é aplicado em runtime).
+const LANG_PREFIX =
+  /^\/(en|ar|fr|es|de|zh|zh-TW|vi|tr|id|it|pt|nl|be|da|ko|sv|ru|ja|uk|sk)(\/.*)?$/;
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    const langMatch = url.pathname.match(LANG_PREFIX);
+    if (langMatch) {
+      url.pathname = langMatch[2] || '/';
+      return Response.redirect(url.toString(), 301);
+    }
 
     if (R2_PATHS.has(url.pathname)) {
       if (request.method !== 'GET' && request.method !== 'HEAD') {
