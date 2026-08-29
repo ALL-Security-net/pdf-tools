@@ -1,0 +1,3 @@
+# Servidos via R2 pelo Worker (excedem o limite de 25 MiB por asset)
+libreoffice-wasm/soffice.wasm.gz
+libreoffice-wasm/soffice.data.gz
