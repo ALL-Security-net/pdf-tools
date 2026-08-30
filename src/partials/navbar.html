@@ -1,3 +1,16 @@
+<script>
+  // Tema: default escuro; ?theme= (passado pelo embed do Workspace) tem
+  // prioridade e fica persistido para as navegações internas seguintes.
+  (function () {
+    try {
+      var q = new URLSearchParams(location.search).get('theme');
+      if (q === 'light' || q === 'dark') localStorage.setItem('pdf_tools_theme', q);
+      if ((q || localStorage.getItem('pdf_tools_theme')) === 'light') {
+        document.documentElement.dataset.theme = 'light';
+      }
+    } catch (e) { /* sem storage: fica no escuro padrão */ }
+  })();
+</script>
 {{#if simpleMode}} {{> navbar-simple}} {{else}}
 <nav class="bg-gray-800 border-b border-gray-700 sticky top-0 z-30">
   <div class="container mx-auto px-4">
