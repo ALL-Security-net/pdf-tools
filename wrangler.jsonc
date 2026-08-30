@@ -9,7 +9,10 @@
     "directory": "./dist",
     "binding": "ASSETS",
     "html_handling": "auto-trailing-slash",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    // Sem isto os assets respondem ANTES do worker e o 301 do domínio direto
+    // (pdf.all-security.net → Workspace) nunca roda para rotas estáticas.
+    "run_worker_first": true
   },
 
   // Módulos LibreOffice WASM (> 25 MiB) servidos via R2
