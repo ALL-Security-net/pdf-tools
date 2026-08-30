@@ -19,6 +19,12 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    // O app vive DENTRO do Workspace (/apps/pdf-tools/, via service binding).
+    // O domínio direto não deve circular: quem chega por ele é levado ao shell.
+    if (url.hostname === 'pdf.all-security.net') {
+      return Response.redirect('https://workspace.all-security.net/', 301);
+    }
+
     const langMatch = url.pathname.match(LANG_PREFIX);
     if (langMatch) {
       url.pathname = langMatch[2] || '/';

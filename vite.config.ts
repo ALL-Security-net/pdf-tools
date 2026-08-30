@@ -82,7 +82,7 @@ function loadPages(): Set<string> {
 const PAGES = loadPages();
 
 function getBasePath(): string {
-  return (process.env.BASE_URL || '/').replace(/\/$/, '');
+  return (process.env.BASE_URL || '/apps/pdf-tools/').replace(/\/$/, '');
 }
 
 function createLanguageMiddleware(isDev: boolean): Connect.NextHandleFunction {
@@ -463,7 +463,7 @@ function swPrecachePlugin(): Plugin {
 }
 
 function rewriteHtmlPathsPlugin(): Plugin {
-  const baseUrl = process.env.BASE_URL || '/';
+  const baseUrl = process.env.BASE_URL || '/apps/pdf-tools/';
   const normalizedBase = baseUrl.replace(/\/?$/, '/');
 
   const escapedBase = normalizedBase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -516,7 +516,7 @@ export default defineConfig(() => {
   }
 
   return {
-    base: (process.env.BASE_URL || '/').replace(/\/?$/, '/'),
+    base: (process.env.BASE_URL || '/apps/pdf-tools/').replace(/\/?$/, '/'),
     worker: {
       format: 'es' as const,
     },
@@ -525,7 +525,7 @@ export default defineConfig(() => {
       handlebars({
         partialDirectory: resolve(__dirname, 'src/partials'),
         context: {
-          baseUrl: (process.env.BASE_URL || '/').replace(/\/?$/, '/'),
+          baseUrl: (process.env.BASE_URL || '/apps/pdf-tools/').replace(/\/?$/, '/'),
           simpleMode: process.env.SIMPLE_MODE === 'true',
           brandName: process.env.VITE_BRAND_NAME || '',
           brandLogo: process.env.VITE_BRAND_LOGO || '',
